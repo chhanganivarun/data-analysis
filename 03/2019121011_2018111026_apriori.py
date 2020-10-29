@@ -177,7 +177,7 @@ def run_hash(dataset,support,k):
 
 def read_file(filename):
     dataset = []
-
+    print("Dataset: ",filename)
     f=open(filename, 'r')
     reader = csv.reader(f)
     for row in reader:
@@ -189,21 +189,19 @@ def main():
     dataset=read_file('SIGN.txt')
     support = 400
     k = 10
-    print('run_original')
+    print("Support:",support)
     start = time.time()
-    print(run_original(dataset,support,k))
+    print("Total Frequent Item sets:",run_original(dataset,support,k))
     end = time.time()
-    print(end - start)
-    print('run_reduction')
+    print("Run_original,Time: ",end - start)
     start = time.time()
-    print(run_reduction(dataset,support,k))
+    print("Total Frequent Item sets:",run_reduction(dataset,support,k))
     end = time.time()
-    print(end - start)
-    print('run_hash')
+    print("Run_reduction,Time: ",end - start)
     start = time.time()
-    print(run_hash(dataset,support,k))
+    print("Total Frequent Item sets:",run_hash(dataset,support,k))
     end = time.time()
-    print(end - start)
+    print("Run_hash,Time: ",end - start)
 
 
 
