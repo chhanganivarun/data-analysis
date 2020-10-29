@@ -6,7 +6,8 @@ import numpy as np
 import time
 from copy import deepcopy
 # In[]:
-with open('test.txt', 'r') as fi:
+dataset_name = 'kosarak_sequences.txt'
+with open(dataset_name, 'r') as fi:
     dataset = fi.readlines()
 dataset = ''.join(dataset)
 dataset = dataset.replace('\n', ' ')
@@ -338,8 +339,9 @@ class fp_tree:
 
 
 # In[]:
-min_sup = 2
-
+print('Dataset: {}'.format(dataset_name))
+min_sup = int(len(dataset)*0.01)
+print('Support: {}'.format(min_sup))
 test_data = dataset
 
 # In[]:
@@ -353,16 +355,17 @@ frequentwordset = fptree.findfqt()
 end = time.time()
 
 print('Original Algorithm, Time: {}'.format(end-start))
+print('Total Frequent Item sets: {}'.format(len(frequentwordset)))
 
-frequentwordset = sorted(frequentwordset, key=lambda k: -k[1])
+# frequentwordset = sorted(frequentwordset, key=lambda k: -k[1])
 
 
-for word in frequentwordset:
-    count = (str(word[1])+"\t")
-    words = ''
-    for val in word[0]:
-        words += (str(val)+" ")
-    print(count+words)
+# for word in frequentwordset:
+#     count = (str(word[1])+"\t")
+#     words = ''
+#     for val in word[0]:
+#         words += (str(val)+" ")
+#     print(count+words)
 
 
 # In[]:
@@ -374,14 +377,16 @@ frequentwordset = fptree.findfqt()
 end = time.time()
 
 print('Optimized Algorithm, Time: {}'.format(end-start))
+print('Total Frequent Item sets: {}'.format(len(frequentwordset)))
 
-for word in frequentwordset:
-    cnt = len(test_data)
-    for i in word:
-        cnt = min(i['count'], cnt)
-    count = (str(cnt)+"\t")
-    words = ''
-    for val in word:
-        words += (str(val['item'])+" ")
-    print(count+words)
+# for word in frequentwordset:
+#     cnt = len(test_data)
+#     for i in word:
+#         cnt = min(i['count'], cnt)
+#     count = (str(cnt)+"\t")
+#     words = ''
+#     for val in word:
+#         words += (str(val['item'])+" ")
+#     print(count+words)
+
 # %%
